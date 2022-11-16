@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Yoo
+ *
+ */
+module BaseballGame {
+}

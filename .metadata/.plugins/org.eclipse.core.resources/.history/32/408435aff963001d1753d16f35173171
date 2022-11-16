@@ -1,0 +1,31 @@
+package Main;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.out.println("------------------------------");
+		System.out.println("야구게임 시작, 랜덤번호 생성");
+		System.out.println("------------------------------");
+		
+		int game[] = new int[3];
+		
+		for (int i=0; i!=3; i++) {
+			int num = (int)(Math.random()*10)+1;
+			
+			if (num == 10) {
+				i--;
+			} else {
+				game[i] = num;
+				
+				for (int j=0; j<i; j++) {
+					if (game[j] == game[j]) {
+						i--;
+						break;
+					}
+				}
+				
+				System.out.print(game[i]);
+			}
+		}
+	}
+}

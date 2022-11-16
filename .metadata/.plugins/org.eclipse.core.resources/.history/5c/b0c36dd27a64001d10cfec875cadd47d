@@ -1,0 +1,16 @@
+package Main;
+
+public class ssssss {
+
+	public static void main(String[] args) {
+		int game[] = new int[3];
+		
+		game[0] = 1;
+		game[1] = 2;
+		game[2] = 3;
+		game[3] = 4;
+
+		System.out.println(game[0] + game[1] + game[2] + game[3]);
+	}
+
+}

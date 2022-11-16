@@ -1,0 +1,16 @@
+package Main;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		double firstNum = Math.random();
+				
+		System.out.println("------------------------------");
+		System.out.println("야구게임 시작, 랜던번호 생성");
+		System.out.println("------------------------------");
+		
+		
+		
+		System.out.println("성공");
+	}
+}
