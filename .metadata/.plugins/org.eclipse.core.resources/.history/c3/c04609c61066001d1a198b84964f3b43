@@ -1,0 +1,135 @@
+package Main;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in)
+		boolean start = true; //게임 시작 스위치
+		
+		while (start) {
+			System.out.println("연산자 게임을 시작합니다."); //게임 시작 ////////////////////////////////////////////////////////////////////////////////////////////////////
+			System.out.println("--------------------");
+			
+			int score = 0; //게임 시작시 점수 0점 초기화
+			int chance = 3; //기회 3번 초기화
+			
+			for (int i=0; i!=10; i++) { //문제 10번 반복 ////////////////////////////////////////////////////////////////////////////////////////////////////
+				System.out.println((i+1) + "번째 문제입니다, 연산자를 입력하세요 :");
+				
+				String answer = scan.next();
+
+				if (answer.equals("+") || answer.equals("-") || answer.equals("*") || answer.equals("/")) { //연산자만 입력 가능
+					int numA = (int)(Math.random()*10); //0~9까지의 랜덤 숫자 생성
+					int numB = (int)(Math.random()*10);
+					
+					System.out.println("문제 : " + numA + " " + answer + " " + numB + " = ");
+					
+					if (answer.equals("/")) { //나누기 경우의 연산을 따로 처리 ////////////////////////////////////////////////////////////////////////////////////////////////////
+						double result = 0;
+						
+						try {
+							result = scan.nextDouble();
+						} catch (InputMismatchException e) {
+							System.out.println("올바른 숫자를 입력해야 합니다." + e);
+							String test = scan.next();
+							i--;
+							continue;
+						} finally {
+							System.out.println("--------------------");
+						}
+						
+						if (numA == 0 || numB == 0) { //두 랜덤수 중 하나라도 0일경우를 따로 연산
+							if (result == 0) {
+								score = correct(score, i);
+							} else {
+								chance = incorrect(chance);
+							}
+						} else { //보통의 나누기 연산
+							if (result == Math.floor(((double)numA / (double)numB) * 10) / 10) {
+								score = correct(score, i);
+							} else {
+								chance = incorrect(chance);
+							}
+						}
+					} else { //더하기, 빼기, 곱하기 경우의 연산 ////////////////////////////////////////////////////////////////////////////////////////////////////
+						int result = 0;
+						
+						try {
+							result = scan.nextInt();
+						} catch (InputMismatchException e) {
+							System.out.println("올바른 숫자를 입력해야 합니다." + e);
+							String test = scan.next();
+							i--;
+							continue;
+						} finally {
+							System.out.println("--------------------");
+						}
+						
+						if (answer.equals("+")) {
+							if (result == (numA + numB)) {
+								score = correct(score, i);
+							} else {
+								chance = incorrect(chance);
+							}
+						} else if (answer.equals("-")) {
+							if (result == (numA - numB)) {
+								score = correct(score, i);
+							} else {
+								chance = incorrect(chance);
+							}
+						} else {
+							if (result == (numA * numB)) {
+								score = correct(score, i);
+							} else {
+								chance = incorrect(chance);
+							}
+						}
+					}
+
+					if (chance == 0) { //실패 ////////////////////////////////////////////////////////////////////////////////////////////////////
+						System.out.println("기회를 모두 소진했습니다, 처음으로 돌아갑니다.\n\n");
+						System.out.println("--------------------");
+						break;
+					}
+				} else {
+					System.out.println("연산자만 입력 가능합니다.");
+					System.out.println("--------------------");
+					i--;
+				}
+			}
+			
+			if (chance != 0) { //결과 ////////////////////////////////////////////////////////////////////////////////////////////////////
+				if (score == 10) {
+					System.out.println("10문제를 모두 맞추셨습니다, 고급입니다.\n\n");
+				} else if (score == 9) {
+					System.out.println("9문제를 맞추셨습니다, 중급입니다.\n\n");			
+				} else if (score == 8) {
+					System.out.println("8문제를 맞추셨습니다, 초급입니다.\n\n");
+				} else {
+					System.out.println("비정상적으로 종료되었습니다.\n\n");
+				}
+			}
+		}
+	}
+	
+	static int correct(int score, int i) { //정답 ////////////////////////////////////////////////////////////////////////////////////////////////////
+		score++;	
+		if (i != 9) {
+			System.out.println("정답입니니다, 현재 점수는 " + score + "점 입니다.");
+			System.out.println("--------------------");
+		}
+		return score;
+	}
+	
+	static int incorrect(int chance) { //오답 ////////////////////////////////////////////////////////////////////////////////////////////////////
+		chance--;
+		if (chance != 0) {
+			System.out.println("틀렸습니다, 기회는 " + chance + "번 남았습니다.");
+			System.out.println("--------------------");
+		}
+		return chance;
+	}
+}
