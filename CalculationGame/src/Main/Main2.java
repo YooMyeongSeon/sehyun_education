@@ -34,8 +34,8 @@ public class Main2 {
 					score = operation(answer, numA, numB, score, i);
 				} catch (InputMismatchException e) {
 					String wrong  = scan.next();
-					System.out.println("[" + wrong  + "]은(는) 올바른 입력이 아닙니다. : " + e);
-					i--;
+						System.out.println("[" + wrong  + "]은(는) 올바른 입력이 아닙니다. : " + e);
+						i--;
 					continue;
 				} finally {
 					System.out.println("--------------------");
@@ -57,7 +57,7 @@ public class Main2 {
 			result(score); 
 		}
 	}
-
+		
 	static int[] operation(String answer, int numA, int numB, int[] score, int i) { //연산 메소드 ////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (answer.equals("/")) { //나누기 경우의 연산을 따로 처리
 			double result = scan.nextDouble();

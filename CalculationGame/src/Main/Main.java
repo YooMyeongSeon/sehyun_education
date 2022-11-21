@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class Main {
 	
+	static Scanner scan = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
 		
 		while (true) { //게임 시작 ////////////////////////////////////////////////////////////////////////////////////////////////////
 			System.out.println("연산자 게임을 시작합니다.");
@@ -32,8 +33,8 @@ public class Main {
 						try {
 							result = scan.nextDouble();
 						} catch (InputMismatchException e) {
-							System.out.println("올바른 숫자를 입력해야 합니다. : " + e);
-							String test = scan.next();
+							String wrong  = scan.next();
+							System.out.println("[" + wrong  + "]은(는) 올바른 입력이 아닙니다. : " + e);
 							i--;
 							continue;
 						} finally {
@@ -59,8 +60,8 @@ public class Main {
 						try {
 							result = scan.nextInt();
 						} catch (InputMismatchException e) {
-							System.out.println("올바른 숫자를 입력해야 합니다. : " + e);
-							String test = scan.next();
+							String wrong  = scan.next();
+							System.out.println("[" + wrong  + "]은(는) 올바른 입력이 아닙니다. : " + e);
 							i--;
 							continue;
 						} finally {
